@@ -51,8 +51,8 @@ function App() {
 					Start
 				</button>
 			) : null}
-			<p className='score'>Score:</p>
-			<p>Loading questions...</p>
+			{!gameOver ? <p className='score'>Score:</p> : null}
+			{loading && <p>Loading questions...</p>}
 			{/* <QuestionCard
 				questionNr={number + 1}
 				totalQuestions={TOTAL_QUESTIONS}
