@@ -1,10 +1,8 @@
 import React from 'react'
-//Types
+// Types
 import { AnswerObject } from '../App'
-
-// export default function QuestionCard() {
-// 	return <div>Question Carc</div>
-// }
+// Styles
+import { Button, Typography } from '@material-ui/core'
 
 type Props = {
 	question: string
@@ -24,23 +22,23 @@ const QuestionCard: React.FC<Props> = ({
 	totalQuestions,
 }) => (
 	<div>
-		<p className='number'>
+		<Typography>
 			Question: {questionNr} / {totalQuestions}
-		</p>
-		<p dangerouslySetInnerHTML={{ __html: question }}></p>
-		<div>
-			{answers.map((answer) => (
-				<div key={answer}>
-					<button
-						disabled={userAnswer ? true : false}
-						value={answer}
-						onClick={callback}
-					>
-						<span dangerouslySetInnerHTML={{ __html: answer }} />
-					</button>
-				</div>
-			))}
-		</div>
+		</Typography>
+		<Typography dangerouslySetInnerHTML={{ __html: question }} />
+		{answers.map((answer) => (
+			<div key={answer}>
+				<Button
+					variant='outlined'
+					color='primary'
+					disabled={userAnswer ? true : false}
+					value={answer}
+					onClick={callback}
+				>
+					<span dangerouslySetInnerHTML={{ __html: answer }} />
+				</Button>
+			</div>
+		))}
 	</div>
 )
 

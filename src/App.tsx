@@ -4,6 +4,10 @@ import { fetchQuizQuestions } from './API'
 import QuestionCard from './components/QuestionCard'
 // Types
 import { QuestionState, Difficulty } from './API'
+// styles
+// import './App.styles.scss'
+
+import { Button, Typography } from '@material-ui/core/'
 
 export type AnswerObject = {
 	question: string
@@ -70,14 +74,15 @@ function App() {
 
 	return (
 		<div className='App'>
-			<h1>Trivia Quiz</h1>
+			<Typography>Trivia Quiz</Typography>
 			{gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-				<button className='start' onClick={startTrivia}>
+				<Button variant='contained' color='primary' onClick={startTrivia}>
 					Start
-				</button>
+				</Button>
 			) : null}
-			{!gameOver ? <p className='score'>Score:</p> : null}
-			{loading && <p>Loading questions...</p>}
+
+			{!gameOver ? <Typography>Score: {score}</Typography> : null}
+			{loading && <Typography>Loading questions...</Typography>}
 			{!loading && !gameOver && (
 				<QuestionCard
 					questionNr={number + 1}
@@ -92,9 +97,9 @@ function App() {
 			!loading &&
 			userAnswers.length === number + 1 &&
 			number !== TOTAL_QUESTIONS - 1 ? (
-				<button className='next' onClick={nextQuestion}>
+				<Button variant='contained' color='primary' onClick={nextQuestion}>
 					Next Question
-				</button>
+				</Button>
 			) : null}
 		</div>
 	)
