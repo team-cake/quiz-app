@@ -74,7 +74,7 @@ function App() {
 
 	return (
 		<div className='App'>
-			<Typography>Trivia Quiz</Typography>
+			<Typography variant='h1'>Trivia Quiz</Typography>
 			{gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
 				<Button variant='contained' color='primary' onClick={startTrivia}>
 					Start
