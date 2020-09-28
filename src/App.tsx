@@ -65,17 +65,17 @@ function App() {
 
 	const nextQuestion = () => {
 		// Move on to the next question if it's not the last question
-		const nextQuestion = number + 1
-		if (nextQuestion === TOTAL_QUESTIONS) {
+		const nextQ = number + 1
+		if (nextQ === TOTAL_QUESTIONS) {
 			setGameOver(true)
 		} else {
-			setNumber(nextQuestion)
+			setNumber(nextQ)
 		}
 	}
 
 	return (
 		<div className='App'>
-			<Typography variant='h1'>Trivia Quiz</Typography>
+			<Typography variant='h1'>Computer Science Trivia Quiz </Typography>
 			{gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
 				<Button variant='contained' color='primary' onClick={startTrivia}>
 					Start
