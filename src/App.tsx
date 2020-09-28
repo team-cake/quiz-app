@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { fetchQuizQuestions } from './API'
 // Components
+import AnswerCard from './components/AnswerCard'
 import QuestionCard from './components/QuestionCard'
 // Types
 import { QuestionState, Difficulty } from './API'
@@ -100,9 +101,6 @@ function App() {
 								questionNr={number + 1}
 								totalQuestions={TOTAL_QUESTIONS}
 								question={questions[number].question}
-								answers={questions[number].answers}
-								userAnswer={userAnswers ? userAnswers[number] : undefined}
-								callback={checkAnswer}
 							/>
 						)}
 					</Paper>
@@ -110,10 +108,7 @@ function App() {
 				<Grid item xs={6}>
 					<Paper className={classes.paper}>
 						{!loading && !gameOver && (
-							<QuestionCard
-								questionNr={number + 1}
-								totalQuestions={TOTAL_QUESTIONS}
-								question={questions[number].question}
+							<AnswerCard
 								answers={questions[number].answers}
 								userAnswer={userAnswers ? userAnswers[number] : undefined}
 								callback={checkAnswer}
