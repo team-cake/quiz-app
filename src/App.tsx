@@ -5,9 +5,19 @@ import QuestionCard from './components/QuestionCard'
 // Types
 import { QuestionState, Difficulty } from './API'
 // styles
-// import './App.styles.scss'
+import { makeStyles } from '@material-ui/core/styles'
+import { Button, Grid, Paper, Typography } from '@material-ui/core/'
 
-import { Button, Typography } from '@material-ui/core/'
+const useStyles = makeStyles((theme) => ({
+	root: {
+		flexGrow: 1,
+	},
+	paper: {
+		padding: theme.spacing(2),
+		textAlign: 'center',
+		color: theme.palette.text.secondary,
+	},
+}))
 
 export type AnswerObject = {
 	question: string
@@ -73,35 +83,80 @@ function App() {
 		}
 	}
 
-	return (
-		<div className='App'>
-			<Typography variant='h1'>Computer Science Trivia Quiz </Typography>
-			{gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-				<Button variant='contained' color='primary' onClick={startTrivia}>
-					Start
-				</Button>
-			) : null}
+	const classes = useStyles()
 
-			{!gameOver ? <Typography>Score: {score}</Typography> : null}
-			{loading && <Typography>Loading questions...</Typography>}
-			{!loading && !gameOver && (
-				<QuestionCard
-					questionNr={number + 1}
-					totalQuestions={TOTAL_QUESTIONS}
-					question={questions[number].question}
-					answers={questions[number].answers}
-					userAnswer={userAnswers ? userAnswers[number] : undefined}
-					callback={checkAnswer}
-				/>
-			)}
-			{!gameOver &&
-			!loading &&
-			userAnswers.length === number + 1 &&
-			number !== TOTAL_QUESTIONS - 1 ? (
-				<Button variant='contained' color='primary' onClick={nextQuestion}>
-					Next Question
-				</Button>
-			) : null}
+	return (
+		<div className={classes.root}>
+			<Grid container spacing={3}>
+				<Grid item xs={12}>
+					<Paper className={classes.paper}>
+						<Typography variant='h1'>Computer Science Trivia Quiz </Typography>
+					</Paper>
+				</Grid>
+				<Grid item xs={6}>
+					<Paper className={classes.paper}>
+						{!loading && !gameOver && (
+							<QuestionCard
+								questionNr={number + 1}
+								totalQuestions={TOTAL_QUESTIONS}
+								question={questions[number].question}
+								answers={questions[number].answers}
+								userAnswer={userAnswers ? userAnswers[number] : undefined}
+								callback={checkAnswer}
+							/>
+						)}
+					</Paper>
+				</Grid>
+				<Grid item xs={6}>
+					<Paper className={classes.paper}>
+						{!loading && !gameOver && (
+							<QuestionCard
+								questionNr={number + 1}
+								totalQuestions={TOTAL_QUESTIONS}
+								question={questions[number].question}
+								answers={questions[number].answers}
+								userAnswer={userAnswers ? userAnswers[number] : undefined}
+								callback={checkAnswer}
+							/>
+						)}
+					</Paper>
+				</Grid>
+				<Grid item xs={3}>
+					<Paper className={classes.paper}>
+						{!gameOver ? <Typography>Score: {score}</Typography> : null}
+					</Paper>
+				</Grid>
+				<Grid item xs={3}>
+					<Paper className={classes.paper}>
+						{loading && <Typography>Loading questions...</Typography>}
+					</Paper>
+				</Grid>
+				<Grid item xs={3}>
+					<Paper className={classes.paper}>
+						{!gameOver &&
+						!loading &&
+						userAnswers.length === number + 1 &&
+						number !== TOTAL_QUESTIONS - 1 ? (
+							<Button
+								variant='contained'
+								color='primary'
+								onClick={nextQuestion}
+							>
+								Next Question
+							</Button>
+						) : null}
+					</Paper>
+				</Grid>
+				<Grid item xs={3}>
+					<Paper className={classes.paper}>
+						{gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
+							<Button variant='contained' color='primary' onClick={startTrivia}>
+								Start
+							</Button>
+						) : null}
+					</Paper>
+				</Grid>
+			</Grid>
 		</div>
 	)
 }
