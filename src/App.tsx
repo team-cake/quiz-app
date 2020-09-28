@@ -6,19 +6,21 @@ import QuestionCard from './components/QuestionCard'
 // Types
 import { QuestionState, Difficulty } from './API'
 // styles
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
 import { Button, Grid, Paper, Typography } from '@material-ui/core/'
 
-const useStyles = makeStyles((theme) => ({
-	root: {
-		flexGrow: 1,
-	},
-	paper: {
-		padding: theme.spacing(2),
-		textAlign: 'center',
-		color: theme.palette.text.secondary,
-	},
-}))
+const useStyles = makeStyles((theme: Theme) =>
+	createStyles({
+		root: {
+			flexGrow: 1,
+		},
+		paper: {
+			padding: theme.spacing(2),
+			textAlign: 'center',
+			color: theme.palette.text.secondary,
+		},
+	})
+)
 
 export type AnswerObject = {
 	question: string
@@ -36,7 +38,6 @@ function App() {
 	const [number, setNumber] = useState(0)
 	const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([])
 	const [score, setScore] = useState(0)
-	console.log('App -> score', score)
 	const [gameOver, setGameOver] = useState(true)
 
 	const startTrivia = async () => {
@@ -150,6 +151,28 @@ function App() {
 							</Button>
 						) : null}
 					</Paper>
+				</Grid>
+			</Grid>
+			<Grid container spacing={3}>
+				<Grid item xs>
+					<Paper className={classes.paper}>xs</Paper>
+				</Grid>
+				<Grid item xs>
+					<Paper className={classes.paper}>xs</Paper>
+				</Grid>
+				<Grid item xs>
+					<Paper className={classes.paper}>xs</Paper>
+				</Grid>
+			</Grid>
+			<Grid container spacing={3}>
+				<Grid item xs>
+					<Paper className={classes.paper}>xs</Paper>
+				</Grid>
+				<Grid item xs={6}>
+					<Paper className={classes.paper}>xs=6</Paper>
+				</Grid>
+				<Grid item xs>
+					<Paper className={classes.paper}>xs</Paper>
 				</Grid>
 			</Grid>
 		</div>
