@@ -25,6 +25,7 @@ function App() {
 	const [number, setNumber] = useState(0)
 	const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([])
 	const [score, setScore] = useState(0)
+	console.log('App -> score', score)
 	const [gameOver, setGameOver] = useState(true)
 
 	const startTrivia = async () => {
@@ -50,7 +51,7 @@ function App() {
 			// check answer against correct value
 			const correct = questions[number].correct_answer === answer
 			// Add score if answer correct
-			if (correct) setScore((prev) => +1)
+			if (correct) setScore((prev) => prev + 1)
 			// Save answer in the array for user answers
 			const AnswerObject = {
 				question: questions[number].question,
