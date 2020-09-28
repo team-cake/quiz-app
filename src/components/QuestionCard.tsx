@@ -1,7 +1,7 @@
 import React from 'react'
 
 // Styles
-import { Button, Typography } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 
 type Props = {
 	question: string

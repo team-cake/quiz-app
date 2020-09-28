@@ -2,7 +2,7 @@ import React from 'react'
 // Types
 import { AnswerObject } from '../App'
 // Styles
-import { Button, Typography } from '@material-ui/core'
+import { Button } from '@material-ui/core'
 
 type Props = {
 	answers: string[]
@@ -15,6 +15,7 @@ const AnswerCard: React.FC<Props> = ({ answers, callback, userAnswer }) => (
 		{answers.map((answer) => (
 			<div key={answer}>
 				<Button
+					size='large'
 					variant='outlined'
 					color='primary'
 					disabled={userAnswer ? true : false}
